@@ -44,4 +44,4 @@ To double the framerate:
 
 further info can be found here: https://www.reddit.com/r/libgdx/comments/4qhtm5/how_to_make_hd_video_of_libgdx_game_my_experience/
 
-Visit my website: sarpex.co.uk
+Visit my website: www.sarpex.co.uk
