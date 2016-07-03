@@ -1,0 +1,18 @@
+group 'uk.co.sarpex.recorderGdx'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    gdxVersion = '1.9.3'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+}
