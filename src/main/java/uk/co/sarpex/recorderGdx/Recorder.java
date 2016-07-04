@@ -14,17 +14,34 @@ import java.util.concurrent.TimeUnit;
  */
 public class Recorder
 {
+    private final long timeout;
     private ExecutorService executor;
 
-  public Recorder(ExecutorService executor) {
-      this.executor = executor;
+    public Recorder(ExecutorService executor) {
+        this.executor = executor;
+        this.timeout = 240;
+    }
 
-  }
+    public Recorder(ExecutorService executor, long timeout) {
+        this.executor = executor;
+        this.timeout = timeout;
+    }
+
+    public Recorder(long timeout) {
+        this.executor = Executors.newFixedThreadPool(25);
+        this.timeout = timeout;
+    }
 
     public Recorder() {
         this.executor = Executors.newFixedThreadPool(25);
-
+        this.timeout = 240;
     }
+
+    public Recorder(int nThreads, long timeout) {
+        this.executor = Executors.newFixedThreadPool(nThreads);
+        this.timeout = timeout;
+    }
+
     //inside render in the end
     public void record() {
         ScreenShot worker = new ScreenShot();
@@ -34,7 +51,7 @@ public class Recorder
 
     public void onExit() {
         try {
-            executor.awaitTermination(240, TimeUnit.SECONDS); // give it time to finish writing screenshots out
+            executor.awaitTermination(timeout, TimeUnit.SECONDS); // give it time to finish writing screenshots out
         } catch (InterruptedException ie) {
             executor.shutdownNow();
         }
